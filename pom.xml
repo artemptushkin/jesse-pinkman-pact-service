@@ -20,6 +20,12 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>au.com.dius</groupId>
+			<artifactId>pact-jvm-consumer-junit5</artifactId>
+			<version>4.0.10</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
@@ -47,6 +53,16 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>au.com.dius</groupId>
+				<artifactId>pact-jvm-provider-maven</artifactId>
+				<version>4.0.10</version>
+				<configuration>
+					<pactBrokerUrl>https://hello.pact.dius.com.au</pactBrokerUrl>
+					<pactBrokerToken>GJADqmiVcrtQu5rjyxpjIQ</pactBrokerToken>
+					<tags>adhoc-test</tags>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
