@@ -18,7 +18,7 @@ public class ShopController {
 	@RequestMapping("/:buy")
 	public CrystalsResponse buy(@RequestParam Integer amount) {
 		ResponseEntity<CrystalsResponse> heisenbergResponse = restTemplate
-				.getForEntity("http://localhost:8091/heisenberg/crystals?amount={0}", CrystalsResponse.class, amount);
+				.getForEntity("http://localhost:8091/heisenberg/crystals/v4?amount={0}", CrystalsResponse.class, amount);
 		CrystalsResponse crystalsResponse = heisenbergResponse.getBody();
 		return crystalsResponse.setAmount(crystalsResponse.getAmount());
 	}
