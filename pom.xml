@@ -60,7 +60,7 @@
 				<artifactId>maven</artifactId>
 				<version>4.1.7</version>
 				<configuration>
-					<pactBrokerUrl>https://hello.pact.dius.com.au</pactBrokerUrl>
+					<pactBrokerUrl>https://hello.pact.dius.com.au/</pactBrokerUrl>
 					<pactBrokerToken>GJADqmiVcrtQu5rjyxpjIQ</pactBrokerToken>
 					<tags>test, prod</tags>
 				</configuration>
