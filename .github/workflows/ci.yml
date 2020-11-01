@@ -69,6 +69,5 @@ jobs:
             broker can-i-deploy \
             -a jesse-pinkman \
             -e ${GIT_COMMIT} \
-            -t test \
-            --latest
+            -t test
         
