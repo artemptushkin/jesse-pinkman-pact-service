@@ -22,6 +22,9 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
+    env:
+      GIT_COMMIT: ${GITHUB_SHA::8}
+      GIT_BRANCH: ${GITHUB_REF#refs/heads/}
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -46,8 +49,11 @@ jobs:
       - name: build
         run: ./mvnw clean package
       - name: publish pacts
-        run: ./mvnw pact:publish -Dpact.consumer.tags=${{ steps.extract_branch.outputs.branch }}
+        run: ./mvnw pact:publish -Dpact.consumer.tags=$GIT_BRANCH -Dpact.consumer.version=$GIT_COMMIT
       - name: can i deploy to test
+        env:
+          PACT_BROKER_BASE_URL: https://hello.pact.dius.com.au/
+          PACT_BROKER_TOKEN: GJADqmiVcrtQu5rjyxpjIQ
         run: |
           docker run --rm \
             -e PACT_BROKER_BASE_URL \
@@ -55,7 +61,7 @@ jobs:
             pactfoundation/pact-cli:latest \
             broker can-i-deploy \
             -a jesse-pinkman \
-            -e 0.0.4-SNAPSHOT \
-            -t prod
+            -e $GIT_COMMIT \
+            -t test
             --latest
         

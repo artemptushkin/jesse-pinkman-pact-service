@@ -16,6 +16,7 @@
 
 	<properties>
 		<java.version>11</java.version>
+		<pact.consumer.version>${project.version}</pact.consumer.version>
 	</properties>
 
 	<dependencies>
@@ -62,6 +63,7 @@
 				<configuration>
 					<pactBrokerUrl>https://hello.pact.dius.com.au/</pactBrokerUrl>
 					<pactBrokerToken>GJADqmiVcrtQu5rjyxpjIQ</pactBrokerToken>
+					<projectVersion>${pact.consumer.version}</projectVersion>
 					<tags>test, prod</tags>
 				</configuration>
 			</plugin>
