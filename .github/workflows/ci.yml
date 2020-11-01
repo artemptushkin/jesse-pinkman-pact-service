@@ -31,8 +31,12 @@ jobs:
     steps:
       - name: Extract branch name
         shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        run: echo "##[set-output name=branch;]$()"
         id: extract_branch
+      - name: Extract git params
+        run: |
+          echo "GIT_COMMIT=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+          echo "GIT_BRANCH=`echo ${GITHUB_REF#refs/heads/}`" >> $GITHUB_ENV
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -48,7 +52,10 @@ jobs:
       - name: build
         run: ./mvnw clean package
       - name: publish pacts
-        run: ./mvnw pact:publish -Dpact.consumer.tags=${{ steps.extract_branch.outputs.branch }} -Dpact.consumer.version=$GIT_COMMIT
+        run: |
+          echo $GIT_COMMIT
+          echo $GIT_BRANCH
+          ./mvnw pact:publish -Dpact.consumer.tags=$GIT_BRANCH -Dpact.consumer.version=$GIT_COMMIT
       - name: can i deploy to test
         env:
           PACT_BROKER_BASE_URL: https://hello.pact.dius.com.au/
