@@ -57,7 +57,7 @@ jobs:
       - uses: whoan/docker-build-with-cache-action@v5
         with:
           registry: https://hub.docker.com
-          image: pactfoundation/pact-cli:latest
+          image_name: pactfoundation/pact-cli:latest
       - name: can i deploy to test
         env:
           PACT_BROKER_BASE_URL: https://hello.pact.dius.com.au/
