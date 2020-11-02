@@ -47,6 +47,9 @@ jobs:
       - name: publish pacts
         run: ./mvnw pact:publish -Dpact.consumer.tags=$GIT_BRANCH -Dpact.consumer.version=$GIT_COMMIT
   deploy:
+    env:
+      PACT_BROKER_BASE_URL: https://hello.pact.dius.com.au/
+      PACT_BROKER_TOKEN: GJADqmiVcrtQu5rjyxpjIQ
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -59,9 +62,6 @@ jobs:
         #Ignore the failure of a step and avoid terminating the job.
         continue-on-error: true
       - name: can i deploy to test
-        env:
-          PACT_BROKER_BASE_URL: https://hello.pact.dius.com.au/
-          PACT_BROKER_TOKEN: GJADqmiVcrtQu5rjyxpjIQ
         run: |
           docker run --rm \
             -e PACT_BROKER_BASE_URL \
