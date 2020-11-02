@@ -47,6 +47,7 @@ jobs:
       - name: publish pacts
         run: ./mvnw pact:publish -Dpact.consumer.tags=$GIT_BRANCH -Dpact.consumer.version=$GIT_COMMIT
   deploy:
+    needs: [build]
     env:
       PACT_BROKER_BASE_URL: https://hello.pact.dius.com.au/
       PACT_BROKER_TOKEN: GJADqmiVcrtQu5rjyxpjIQ
