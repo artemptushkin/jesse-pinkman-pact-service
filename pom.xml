@@ -64,7 +64,7 @@
 					<pactBrokerUrl>https://hello.pact.dius.com.au/</pactBrokerUrl>
 					<pactBrokerToken>GJADqmiVcrtQu5rjyxpjIQ</pactBrokerToken>
 					<projectVersion>${pact.consumer.version}</projectVersion>
-					<tags>test, prod</tags>
+					<tags>dev</tags>
 				</configuration>
 			</plugin>
 		</plugins>

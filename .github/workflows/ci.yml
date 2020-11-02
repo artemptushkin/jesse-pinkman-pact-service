@@ -24,13 +24,8 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Extract branch name
-        shell: bash
-        run: echo "##[set-output name=branch;]$()"
-        id: extract_branch
       - name: Extract git params
         run: |
           echo "GIT_COMMIT=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
@@ -50,10 +45,16 @@ jobs:
       - name: build
         run: ./mvnw clean package
       - name: publish pacts
+        run: ./mvnw pact:publish -Dpact.consumer.tags=$GIT_BRANCH -Dpact.consumer.version=$GIT_COMMIT
+  deploy:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Extract git params
         run: |
-          echo $GIT_COMMIT
-          echo $GIT_BRANCH
-          ./mvnw pact:publish -Dpact.consumer.tags=$GIT_BRANCH -Dpact.consumer.version=$GIT_COMMIT
+          echo "GIT_COMMIT=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+          echo "GIT_BRANCH=`echo ${GITHUB_REF#refs/heads/}`" >> $GITHUB_ENV
       - uses: satackey/action-docker-layer-caching@v0.0.8
         #Ignore the failure of a step and avoid terminating the job.
         continue-on-error: true
@@ -70,4 +71,18 @@ jobs:
             -a jesse-pinkman \
             -e ${GIT_COMMIT} \
             -t test
-        
+      - name: deploy to test
+        run: |
+          echo "================================================="
+          echo "DEPLOYING APPLICATION"
+          echo "================================================="
+      - name: create test tag
+        run: |
+          docker run --rm \
+            -e PACT_BROKER_BASE_URL \
+            -e PACT_BROKER_TOKEN \
+            pactfoundation/pact-cli:latest \
+            broker create-version-tag \
+            -a jesse-pinkman \
+            -e ${GIT_COMMIT} \
+            -t test
