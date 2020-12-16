@@ -38,7 +38,8 @@ class JessePinkmanPactServiceApplicationTests {
 				.willRespondWith()
 				.body(
 						new PactDslJsonBody()
-						.numberType("amount", 20.0)
+							.numberType("amount", 20.0)
+								.numberType("cost", 100.0)
 						.array("crystals")
 								.object()
 									.numberValue("id", 1)
