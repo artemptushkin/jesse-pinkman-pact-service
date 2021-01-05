@@ -3,7 +3,7 @@
 The sample Pact consumer service based on Spring Boot with contract testing GitHub Actions CI/CD pipeline.
 
 This repository implements the contract testing pipeline following [the general documentation](https://docs.pact.io/pact_nirvana/step_4/#consumer-pipeline).
-![asd](https://docs.pact.io/assets/images/advanced-pact-workshop-diagrams-provider-pipeline-42b395152d061dc28d060675af34ac72.png)
+![asd](https://docs.pact.io/assets/images/advanced-pact-workshop-diagrams-consumer-pipeline-b67d7ab46fe4bdc62e8103e86b9c55d8.png)
 
 On merge to any branch it triggers [the GitHub Actions pipeline](https://github.com/artemptushkin/jesse-pinkman-pact-service/actions)
 that includes steps:
