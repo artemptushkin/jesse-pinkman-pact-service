@@ -54,7 +54,7 @@ class JessePinkmanPactServiceApplicationTests {
 	}
 
 	@Test
-	public void itReturnsData() {
+	void itReturnsData() {
 		CrystalsResponse crystalsResponse = shopController.buy(2);
 
 		assertEquals( new BigDecimal("20"), crystalsResponse.getAmount());
