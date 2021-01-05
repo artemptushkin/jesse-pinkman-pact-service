@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>io.artemptushkin.github</groupId>
 	<artifactId>jesse-pinkman-pact-service</artifactId>
-	<version>0.0.4-SNAPSHOT</version>
+	<version>0.0.5-SNAPSHOT</version>
 	<name>jesse-pinkman-pact-service</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -23,7 +23,7 @@
 		<dependency>
 			<groupId>au.com.dius.pact.consumer</groupId>
 			<artifactId>junit5</artifactId>
-			<version>4.1.7</version>
+			<version>4.1.12</version>
 		</dependency>
 
 		<dependency>
@@ -59,12 +59,12 @@
 				<!-- https://mvnrepository.com/artifact/au.com.dius.pact.provider/maven -->
 				<groupId>au.com.dius.pact.provider</groupId>
 				<artifactId>maven</artifactId>
-				<version>4.1.7</version>
+				<version>4.1.12</version>
 				<configuration>
 					<pactBrokerUrl>https://hello.pact.dius.com.au/</pactBrokerUrl>
 					<pactBrokerToken>GJADqmiVcrtQu5rjyxpjIQ</pactBrokerToken>
 					<projectVersion>${pact.consumer.version}</projectVersion>
-					<tags>dev</tags>
+					<tags>develop</tags>
 				</configuration>
 			</plugin>
 		</plugins>
