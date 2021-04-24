@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>io.artemptushkin.github</groupId>
 	<artifactId>jesse-pinkman-pact-service</artifactId>
-	<version>0.0.5-SNAPSHOT</version>
+	<version>v1</version>
 	<name>jesse-pinkman-pact-service</name>
 	<description>Demo project for Spring Boot</description>
 

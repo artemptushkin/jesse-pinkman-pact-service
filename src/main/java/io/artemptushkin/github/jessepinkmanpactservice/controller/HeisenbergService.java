@@ -13,7 +13,7 @@ public class HeisenbergService {
 
 	public HeisenbergResponse cookCrystals(Integer amount) {
 		ResponseEntity<HeisenbergResponse> heisenbergResponseEntity = restTemplate
-				.getForEntity("http://localhost:8091/heisenberg/crystals/v4?amount={0}", HeisenbergResponse.class, amount);
+				.getForEntity("http://localhost:8091/heisenberg/v1/crystals?amount={0}", HeisenbergResponse.class, amount);
 		return heisenbergResponseEntity.getBody();
 	}
 }
