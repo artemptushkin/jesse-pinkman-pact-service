@@ -14,8 +14,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
-public class CrystalsResponse {
+public class HeisenbergResponse {
 	private BigDecimal amount;
-	private BigDecimal cost;
 	private List<Crystal> crystals;
 }
