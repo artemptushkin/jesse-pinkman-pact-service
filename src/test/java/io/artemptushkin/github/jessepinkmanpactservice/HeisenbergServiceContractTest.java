@@ -8,25 +8,27 @@ import au.com.dius.pact.consumer.junit5.PactConsumerTestExt;
 import au.com.dius.pact.consumer.junit5.PactTestFor;
 import au.com.dius.pact.core.model.RequestResponsePact;
 import au.com.dius.pact.core.model.annotations.Pact;
-import io.artemptushkin.github.jessepinkmanpactservice.controller.CrystalsResponse;
-import io.artemptushkin.github.jessepinkmanpactservice.controller.ShopController;
+import io.artemptushkin.github.jessepinkmanpactservice.controller.HeisenbergResponse;
+import io.artemptushkin.github.jessepinkmanpactservice.controller.HeisenbergService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.web.client.RestTemplate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest
 @PactTestFor(port = "8091", providerName = "heisenberg")
 @ExtendWith(value = {SpringExtension.class, PactConsumerTestExt.class})
-class JessePinkmanPactServiceApplicationTests {
+class HeisenbergServiceContractTest {
 
-	@Autowired
-	ShopController shopController;
+	HeisenbergService heisenbergService;
 
+	@BeforeEach
+	void setup() {
+		heisenbergService = new HeisenbergService(new RestTemplate());
+	}
 	@Pact(consumer = "jesse-pinkman", provider = "heisenberg")
 	public RequestResponsePact createPact(PactDslWithProvider builder) {
 		return builder
@@ -55,9 +57,9 @@ class JessePinkmanPactServiceApplicationTests {
 
 	@Test
 	void itReturnsData() {
-		CrystalsResponse crystalsResponse = shopController.buy(2);
+		HeisenbergResponse heisenbergResponse = heisenbergService.cookCrystals(2);
 
-		assertEquals( new BigDecimal("20"), crystalsResponse.getAmount());
+		assertEquals( new BigDecimal("20"), heisenbergResponse.getAmount());
 	}
 
 }
