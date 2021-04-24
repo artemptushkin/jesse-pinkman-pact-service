@@ -1,5 +1,7 @@
 package io.artemptushkin.github.jessepinkmanpactservice.controller;
 
+import java.math.BigDecimal;
+
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,6 @@ public class ShopController {
 		ResponseEntity<CrystalsResponse> heisenbergResponse = restTemplate
 				.getForEntity("http://localhost:8091/heisenberg/crystals/v4?amount={0}", CrystalsResponse.class, amount);
 		CrystalsResponse crystalsResponse = heisenbergResponse.getBody();
-		return crystalsResponse.setAmount(crystalsResponse.getAmount());
+		return crystalsResponse.setCost(crystalsResponse.getAmount().multiply(BigDecimal.valueOf(5)));
 	}
 }

@@ -16,5 +16,6 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class CrystalsResponse {
 	private BigDecimal amount;
+	private BigDecimal cost;
 	private List<Crystal> crystals;
 }
