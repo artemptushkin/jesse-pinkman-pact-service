@@ -3,6 +3,10 @@
 This service along with [Heisenberg](https://github.com/artemptushkin/heisenberg-pact-service) and [GustavoFring](https://github.com/artemptushkin/gustavo-fring-pact-service)
 is a set of demo services for pact contract testing pipeline demonstrations.
 
+You can use these repositories as
+* Example of contract testing pipeline with Pact Broker
+* Use-cases for consumer-driven-contracts development
+
 -----
 
 The sample Pact consumer service based on Spring Boot with contract testing GitHub Actions CI/CD pipeline.
