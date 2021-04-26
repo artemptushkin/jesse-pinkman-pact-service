@@ -29,13 +29,14 @@ class HeisenbergServiceContractTest {
 	void setup() {
 		heisenbergService = new HeisenbergService(new RestTemplate());
 	}
+
 	@Pact(consumer = "jesse-pinkman", provider = "heisenberg")
 	public RequestResponsePact createPact(PactDslWithProvider builder) {
 		return builder
 				.given("get crystals")
 				.uponReceiving("GET REQUEST")
 				.method("GET")
-				.path("/heisenberg/crystals/v4")
+				.path("/heisenberg/v1/crystals")
 				.query("amount=2")
 				.willRespondWith()
 				.body(
