@@ -84,4 +84,4 @@ jobs:
             broker create-version-tag \
             --pacticipant=jesse-pinkman \
             --version=${GIT_COMMIT} \
-            --to=prod
+            --tag=prod
