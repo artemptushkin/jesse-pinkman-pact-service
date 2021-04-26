@@ -67,9 +67,9 @@ jobs:
             -e PACT_BROKER_TOKEN \
             pactfoundation/pact-cli:latest \
             broker can-i-deploy \
-            -a jesse-pinkman \
-            -e ${GIT_COMMIT} \
-            -t prod
+            --pacticipant=jesse-pinkman \
+            --version=${GIT_COMMIT} \
+            --to=prod
       - name: deploy to test
         run: |
           echo "================================================="
@@ -82,6 +82,6 @@ jobs:
             -e PACT_BROKER_TOKEN \
             pactfoundation/pact-cli:latest \
             broker create-version-tag \
-            -a jesse-pinkman \
-            -e ${GIT_COMMIT} \
-            -t prod
+            --pacticipant=jesse-pinkman \
+            --version=${GIT_COMMIT} \
+            --to=prod
