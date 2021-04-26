@@ -68,7 +68,6 @@ jobs:
             pactfoundation/pact-cli:latest \
             broker can-i-deploy \
             --pacticipant=jesse-pinkman \
-            --version=${GIT_COMMIT} \
             --all=prod \
             --to=prod
       - name: deploy to test
