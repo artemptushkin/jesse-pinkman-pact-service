@@ -2,6 +2,7 @@ package io.artemptushkin.github.jessepinkmanpactservice.controller;
 
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -11,6 +12,8 @@ public class HeisenbergService {
 	private final RestTemplate restTemplate;
 
 	public HeisenbergResponse cookCrystals(Integer amount) {
-		return null;
+		ResponseEntity<HeisenbergResponse> heisenbergResponseEntity = restTemplate
+				.getForEntity("http://localhost:8091/heisenberg/v1/crystals?amount={0}", HeisenbergResponse.class, amount);
+		return heisenbergResponseEntity.getBody();
 	}
 }
